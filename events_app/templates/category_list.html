@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<div class="p-3 pb-md-4 mx-auto text-center">
+    <h1 class="display-4 fw-normal">Categories</h1>
+    <p class="fs-5 text-muted">List of categories.</p>
+</div>
+{% endblock %}
+
+{% block content %} 
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for category in categories %}
+        <tr>
+            <td>{{ category.name }}</td>
+            <td>{{ category.description }}</td>
+            <td>
+                <a href="{% url 'category_events' category.id %}" class="btn btn-primary btn-sm">
+                    <i class="bi bi-info-circle"></i> Detail 
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<div class="d-flex p-3">
+    <a href="{% url 'event_create' %}" class="btn btn-secondary btn-sm ms-auto">
+        <i class="bi bi-plus"></i> Create Event
+    </a>
+</div>
+
+<div class="p-3 pb-md-4 mx-auto text-center">
+    <h1 class="display-4 fw-normal">Events</h1>
+    <p class="fs-5 text-muted">List of approved events.</p>
+</div>
+{% endblock %}
+
+{% block content %} 
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for event in events %}
+        <tr>
+            <td>{{ event.title }}</td>
+            <td>{{ event.description }}</td>
+            <td>
+                <a href="{% url 'event_detail' event.id %}" class="btn btn-primary btn-sm">
+                    <i class="bi bi-info-circle"></i> Detail
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

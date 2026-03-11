@@ -8,6 +8,8 @@ class EventAdmin(admin.ModelAdmin):
     list_filter = ('is_approved',)
     search_fields = ['is_approved', 'category']
 
+class CategoryAdmin(admin.ModelAdmin):    
+    list_display = ['name', 'description']
 # Register your models here.
-admin.site.register(Category)
+admin.site.register(Category, CategoryAdmin)
 admin.site.register(Event, EventAdmin)

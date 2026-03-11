@@ -6,6 +6,9 @@ class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
     description = models.TextField(blank=True)
 
+    def __str__(self):
+        return self.name  # Return name when display category object
+
 class Event(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
@@ -21,8 +24,9 @@ class Event(models.Model):
 
     def clean(self):
         super().clean()
+        
         # Validate end_datetime is later than start_datetime    
-        if self.end_datetime < self.start_datetime:
+        if self.start_datetime and self.end_datetime and self.end_datetime < self.start_datetime:
             raise ValidationError('End datetime must be later than start datetime')
 
 
