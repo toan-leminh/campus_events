@@ -65,18 +65,24 @@ Once the virtualenv is activated, you can install the required dependencies.
 ```
 $ pip install -r requirements.txt
 
+```
+
 Migration: 
+
 ```
 $ python3 manage.py makemigrations
 $ python3 manage.py migrate
 ```
 
 Create admin user: 
+
 ```
 $ python3 manage.py createsuperuser
 < Input your admin username/password >
 ```
+
 Run dev-server: 
+
 ```
 $ python3 manage.py runserver
 ```
