@@ -1,5 +1,7 @@
 from django import db
 from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib import messages
+
 from events_app.forms import EventForm
 from events_app.models import Category, Event
 
@@ -28,9 +30,14 @@ def event_create(request):
         form = EventForm(request.POST)
         if form.is_valid():
             event = form.save()
-            return redirect('event_detail', event_id = event.id)   
+            messages.success(request, 'Event created successfully and is pending approval.')
+            return redirect('event_list')   
     else:
         form = EventForm()
-
     return render(request, 'event_create.html', {'form': form})
 
+def error_404_view(request, exception):
+    return render(request, 'errors/404.html', status=404)
+
+def error_500_view(request):
+    return render(request, 'errors/500.html', status=500)

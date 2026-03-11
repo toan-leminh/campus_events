@@ -1,11 +1,29 @@
 {% extends 'base.html' %}
 
+{% block title %}
+<div class="d-flex p-3">
+    <a href="{% url 'category_list' %}" class="btn btn-secondary btn-sm mb-3">
+        <i class="bi bi-arrow-left"></i> Back to Categories
+    </a>
+</div>
+
+<div class="p-3 pb-md-4 mx-auto text-center">
+    <h1 class="display-4 fw-normal">Category Events</h1>
+    <p class="fs-5 text-muted">List of approved events in <span class="fw-bold">{{ category.name }}</span> category.</p>
+</div>
+{% endblock %}
+
 {% block content %} 
 <table class="table table-striped">
     <thead>
         <tr>
             <th>Name</th>
             <th>Description</th>
+            <th>Category</th>
+            <th width="180">Datetime</th>
+            <th>Location</th>
+            <th>Contact</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -13,6 +31,15 @@
         <tr>
             <td>{{ event.title }}</td>
             <td>{{ event.description }}</td>
+            <td>{{ event.category.name }}</td>
+            <td>{{ event.start_datetime | date:"d/m/Y H:i" }} - {{ event.end_datetime | date:"d/m/Y H:i" }}</td>
+            <td>{{ event.location }}</td>
+            <td>{{ event.contact_name }} <br/> {{ event.contact_email }}</td>
+            <td>
+                <a href="{% url 'event_detail' event.id %}" class="btn btn-primary btn-sm">
+                    <i class="bi bi-info-circle"></i> Detail
+                </a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>

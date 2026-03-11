@@ -13,12 +13,25 @@
 </div>
 {% endblock %}
 
-{% block content %} 
+{% block content %}
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+{% endif %}
+
 <table class="table table-striped">
     <thead>
         <tr>
             <th>Name</th>
             <th>Description</th>
+            <th>Category</th>
+            <th width="180">Datetime</th>
+            <th>Location</th>
+            <th>Contact</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -27,6 +40,10 @@
         <tr>
             <td>{{ event.title }}</td>
             <td>{{ event.description }}</td>
+            <td>{{ event.category.name }}</td>
+            <td>{{ event.start_datetime | date:"d/m/Y H:i" }} - {{ event.end_datetime | date:"d/m/Y H:i" }}</td>
+            <td>{{ event.location }}</td>
+            <td>{{ event.contact_name }} <br/> {{ event.contact_email }}</td>
             <td>
                 <a href="{% url 'event_detail' event.id %}" class="btn btn-primary btn-sm">
                     <i class="bi bi-info-circle"></i> Detail

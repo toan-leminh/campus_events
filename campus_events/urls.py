@@ -21,3 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('events_app.urls')),
 ]
+
+# Error handling
+handler404 = 'events_app.views.error_404_view'
+handler500 = 'events_app.views.error_500_view'

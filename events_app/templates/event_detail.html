@@ -25,6 +25,26 @@
     <label class="fw-bold">Description</label>
     <p class="ps-2">{{ event.description }} </p>
   </div>
+
+  <div class="form-group">  
+    <label class="fw-bold">Category</label>
+    <p class="ps-2">{{ event.category.name }}</p>
+  </div>
+
+  <div class="form-group">  
+    <label class="fw-bold">Datetime</label>
+    <p class="ps-2">{{ event.start_datetime | date:"d/m/Y H:i" }} - {{ event.end_datetime | date:"d/m/Y H:i" }}</p>
+  </div>
+
+  <div class="form-group">  
+    <label class="fw-bold">Location</label>
+    <p class="ps-2">{{ event.location }}</p>
+  </div>
+
+  <div class="form-group">  
+    <label class="fw-bold">Contact</label>
+    <p class="ps-2">{{ event.contact_name }} <br/> {{ event.contact_email }}</p>
+  </div>
  
 </form>
 {% endblock %}
